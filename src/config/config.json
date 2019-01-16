@@ -1,3 +1,7 @@
 {
-  "token": "YOUR_TOKEN_HERE"
+  "token": "",
+  "welcome": {
+    "channelId": "",
+    "messageTemplate": "Welcome <user>! Please read the #rules and tell us how you identify~"
+  }
 }
