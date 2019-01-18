@@ -1,7 +1,7 @@
 {
   "token": "",
   "welcome": {
-    "channelId": "",
-    "messageTemplate": "Welcome <user>! Please read the #rules and tell us how you identify~"
+    "channelId": "352215874771615754",
+    "messageTemplate": "Welcome <user>! Please read the <#300991962876608512> and tell us how you identify~"
   }
 }
