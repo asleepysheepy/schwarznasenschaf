@@ -7,5 +7,9 @@
   "welcome": {
     "channelId": "352215874771615754",
     "messageTemplate": "Welcome <user>! Please read the <#300991962876608512> and tell us how you identify~"
+  },
+  "leave": {
+    "channelId": "309382568896233476",
+    "messageTemplate": "<user> has left the server."
   }
 }
