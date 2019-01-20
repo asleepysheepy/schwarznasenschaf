@@ -11,5 +11,19 @@
   "leave": {
     "channelId": "309382568896233476",
     "messageTemplate": "<user> has left the server."
+  },
+  "commands": {
+    "prefix": "^",
+    "errorMessage": "Something went wrong. Please check your command and try again.\n\nContact Sleepy Sheepy#0179 if the problem persists.",
+    "unknownMessage": "That command doesn't exist! Use `^help` for a list of commands",
+    "verify": {
+      "permission": "Modteam",
+      "roleToRemove": "Just Joined",
+      "roleToAdd": "Verified",
+      "botsChannelId": "299439031320838145",
+      "botsChannelMessage": "<user> you can mention @roleypoly for self-assignable roles.",
+      "generalChannelId": "309382568896233476",
+      "GeneralChannelMessage": "Welcome <user>"
+    }
   }
 }
