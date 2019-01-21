@@ -1,8 +1,8 @@
 const fs = require('fs');
-const Discord = require('discord.js');
+const Collection = require('discord.js').Collection;
 
 const loadCommands = () => {
-  const commands = new Discord.Collection();
+  const commands = new Collection();
   const commandFiles = fs.readdirSync('./src/commands').filter((file) => {
     return file.endsWith('.js') && !file.startsWith('index');
   });
