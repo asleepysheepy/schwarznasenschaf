@@ -22,10 +22,10 @@ function welcomeMessages(message, config) {
 }
 
 function deleteMessages(channel, deleteAmount) {
-  channel.bulkDelete(deleteAmount).then(() => {
-    channel.send(`${deleteAmount} messages deleted.`).then((message) => {
+  channel.bulkDelete(deleteAmount).then((messages) => {
+    channel.send(`${messages.size - 1} messages deleted.`).then((mess) => {
       setTimeout(() => {
-        message.delete();
+        mess.delete();
       }, 5000);
     });
   });
@@ -36,7 +36,7 @@ module.exports = {
   description: 'Verifies the mentioned user',
   usage: '^verify <@user> [num_message_to_delete]',
   execute: (message, args, config) => {
-    if (!message.member.roles.exists('name', config.permission)) return;
+    if (!message.member.roles.find((role) => role.name === config.permission)) return;
 
     roles(message, config);
     welcomeMessages(message, config);
