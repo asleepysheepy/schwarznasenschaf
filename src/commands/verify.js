@@ -34,7 +34,7 @@ function deleteMessages(channel, deleteAmount) {
 module.exports = {
   name: 'verify',
   description: 'Verifies the mentioned user',
-  usage: '^verify <@user> [num_message_to_delete]',
+  usage: 'verify <@user> [num_message_to_delete]',
   execute: (message, args, config) => {
     if (!message.member.roles.find((role) => role.name === config.permission)) return;
 
