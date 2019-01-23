@@ -1,7 +1,7 @@
 {
   "token": "",
   "activity": {
-    "name": "^help",
+    "name": "?help",
     "type": "LISTENING"
   },
   "welcome": {
@@ -13,9 +13,9 @@
     "messageTemplate": "<user> has left the server."
   },
   "commands": {
-    "prefix": "^",
+    "prefix": "?",
     "errorMessage": "Something went wrong. Please check your command and try again.\n\nContact Sleepy Sheepy#0179 if the problem persists.",
-    "unknownMessage": "That command doesn't exist! Use `^help` for a list of commands",
+    "unknownMessage": "That command doesn't exist! Use `?help` for a list of commands",
     "verify": {
       "permission": "Modteam",
       "roleToRemove": "Just Joined",
