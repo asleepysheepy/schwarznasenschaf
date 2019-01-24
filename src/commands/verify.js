@@ -1,15 +1,15 @@
 function roles(message, config) {
-  const member = message.mentions.members.first;
+  const member = message.mentions.members.first();
   const guild = message.guild;
-  const roleToAdd = guild.roles.find('name', config.roleToAdd);
-  const roleToRemove = guild.roles.find('name', config.roleToRemove);
+  const roleToAdd = guild.roles.find((role) => role.name === config.roleToAdd);
+  const roleToRemove = guild.roles.find((role) => role.name === config.roleToRemove);
 
   member.addRole(roleToAdd);
   member.removeRole(roleToRemove);
 }
 
 function welcomeMessages(message, config) {
-  const member = message.mentions.members.first;
+  const member = message.mentions.members.first();
   const guild = message.guild;
 
   const botsChannel = guild.channels.get(config.botsChannelId);
@@ -43,8 +43,8 @@ module.exports = {
 
     if(args[1] && parseInt(args[1])) {
       setTimeout(() => {
-        deleteMessages(message.chanel, parseInt(args[1]) + 1);
-      }, 10000);
+        deleteMessages(message.channel, parseInt(args[1]) + 1);
+      }, 5000);
     }
   },
 };

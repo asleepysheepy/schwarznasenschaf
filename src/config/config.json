@@ -23,7 +23,7 @@
       "botsChannelId": "299439031320838145",
       "botsChannelMessage": "<user> you can mention @roleypoly for self-assignable roles.",
       "generalChannelId": "309382568896233476",
-      "GeneralChannelMessage": "Welcome <user>"
+      "generalChannelMessage": "Welcome <user>"
     },
     "clear": {
       "permission": "Modteam"
