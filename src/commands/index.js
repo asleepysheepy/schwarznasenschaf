@@ -18,18 +18,14 @@ const loadCommands = () => {
 const handleCommand = (message, commands, config) => {
   const args = message.content.slice(config.prefix.length).split(/ +/);
   const commandName = args.shift().toLowerCase();
-  const commandConfig = config[commandName];
 
   if (commands.has(commandName)) {
     try {
-      commands.get(commandName).execute(message, args, commandConfig);
+      commands.get(commandName).execute(message, args);
     }
     catch (error) {
       message.reply(config.errorMessage);
     }
-  }
-  else {
-    message.channel.send(config.unknownMessage);
   }
 };
 

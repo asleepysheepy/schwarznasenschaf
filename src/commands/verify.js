@@ -1,4 +1,6 @@
-function roles(message, config) {
+const config = require('../config/config.json').commands.verify;
+
+function roles(message) {
   const member = message.mentions.members.first();
   const guild = message.guild;
   const roleToAdd = guild.roles.find((role) => role.name === config.roleToAdd);
@@ -8,7 +10,7 @@ function roles(message, config) {
   member.removeRole(roleToRemove);
 }
 
-function welcomeMessages(message, config) {
+function welcomeMessages(message) {
   const member = message.mentions.members.first();
   const guild = message.guild;
 
@@ -35,11 +37,12 @@ module.exports = {
   name: 'verify',
   description: 'Verifies the mentioned user',
   usage: 'verify <@user> [num_message_to_delete]',
-  execute: (message, args, config) => {
+  permission: config.permission,
+  execute: (message, args) => {
     if (!message.member.roles.find((role) => role.name === config.permission)) return;
 
-    roles(message, config);
-    welcomeMessages(message, config);
+    roles(message);
+    welcomeMessages(message);
 
     if(args[1] && parseInt(args[1])) {
       setTimeout(() => {
