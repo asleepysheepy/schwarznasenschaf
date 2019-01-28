@@ -6,7 +6,7 @@
   },
   "welcome": {
     "channelId": "352215874771615754",
-    "messageTemplate": "Welcome <user>! Please read the <#300991962876608512> and tell us how you identify~"
+    "messageTemplate": "Welcome <user>! Please confirm you've read the <#300991962876608512> and tell us how you identify~"
   },
   "leave": {
     "channelId": "309382568896233476",
@@ -20,7 +20,7 @@
       "roleToRemove": "Just Joined",
       "roleToAdd": "Verified",
       "botsChannelId": "299439031320838145",
-      "botsChannelMessage": "<user> you can mention @roleypoly for self-assignable roles.",
+      "botsChannelMessage": "<user> you can assign yourself roles here: https://rp.kat.cafe/s/298378877938434050",
       "generalChannelId": "309382568896233476",
       "generalChannelMessage": "Welcome <user>"
     },
