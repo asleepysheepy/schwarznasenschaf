@@ -1,4 +1,4 @@
-exports.deleteMessages = function (channel, deleteAmount) {
+exports.deleteMessages = (channel, deleteAmount) => {
   if (deleteAmount < 1 || deleteAmount >= 100) {
     channel.send(`Please specific a valid amount of messages to delete [1-100)`).then((mess) => {
       setTimeout(() => {
