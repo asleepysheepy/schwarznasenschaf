@@ -16,5 +16,8 @@ client.on('message', (message) => handleMessage(message, config, client.commands
 client.on('ready', () => client.user.setActivity(config.activity.name, { type: config.activity.type }));
 
 client.on('error', (error) => console.log(error));
+process.on('unhandledRejection', function (reason, p) {
+  console.log("Possibly Unhandled Rejection at: Promise ", p, " reason: ", reason);
+});
 
 client.login(config.token);
