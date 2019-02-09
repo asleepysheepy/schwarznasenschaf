@@ -15,4 +15,6 @@ client.on('guildMemberRemove', (member) => handleMemberLeave(member, config.leav
 client.on('message', (message) => handleMessage(message, config, client.commands, commands.handleCommand));
 client.on('ready', () => client.user.setActivity(config.activity.name, { type: config.activity.type }));
 
+client.on('error', (error) => console.log(error));
+
 client.login(config.token);

@@ -24,7 +24,7 @@ function welcomeMessages(message) {
 }
 
 function deleteMessages(channel, deleteAmount) {
-  channel.bulkDelete(deleteAmount).then((messages) => {
+  channel.bulkDelete(deleteAmount, true).then((messages) => {
     channel.send(`${messages.size - 1} messages deleted.`).then((mess) => {
       setTimeout(() => {
         mess.delete();
@@ -44,7 +44,7 @@ module.exports = {
     roles(message);
     welcomeMessages(message);
 
-    if(args[1] && parseInt(args[1])) {
+    if (args[1] && parseInt(args[1])) {
       setTimeout(() => {
         deleteMessages(message.channel, parseInt(args[1]) + 1);
       }, 5000);
