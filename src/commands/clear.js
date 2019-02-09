@@ -1,4 +1,5 @@
 const config = require('../config/config.json').commands.clear;
+const utils = require('../utils');
 
 module.exports = {
   name: 'clear',
@@ -8,13 +9,7 @@ module.exports = {
   execute: (message, args) => {
     if (!message.member.roles.find((role) => role.name === config.permission)) return;
 
-    const deleteAmount = parseInt(args[0]) + 1;
-    message.channel.bulkDelete(deleteAmount, true).then((messages) => {
-      message.channel.send(`${messages.size - 1} messages deleted.`).then((mess) => {
-        setTimeout(() => {
-          mess.delete();
-        }, 5000);
-      });
-    });
+    const deleteAmount = parseInt(args[0]);
+    utils.deleteMessages(message.channel, deleteAmount);
   },
 };
