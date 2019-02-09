@@ -1,4 +1,5 @@
 const config = require('../config/config.json').commands.verify;
+const utils = require('../utils');
 
 function roles(message) {
   const member = message.mentions.members.first();
@@ -23,16 +24,6 @@ function welcomeMessages(message) {
   generalChannel.send(generalMessage);
 }
 
-function deleteMessages(channel, deleteAmount) {
-  channel.bulkDelete(deleteAmount, true).then((messages) => {
-    channel.send(`${messages.size - 1} messages deleted.`).then((mess) => {
-      setTimeout(() => {
-        mess.delete();
-      }, 5000);
-    });
-  });
-}
-
 module.exports = {
   name: 'verify',
   description: 'Verifies the mentioned user',
@@ -46,7 +37,7 @@ module.exports = {
 
     if (args[1] && parseInt(args[1])) {
       setTimeout(() => {
-        deleteMessages(message.channel, parseInt(args[1]) + 1);
+        utils.deleteMessages(message.channel, parseInt(args[1]));
       }, 5000);
     }
   },
