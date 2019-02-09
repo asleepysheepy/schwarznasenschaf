@@ -9,7 +9,7 @@ module.exports = {
     if (!message.member.roles.find((role) => role.name === config.permission)) return;
 
     const deleteAmount = parseInt(args[0]) + 1;
-    message.channel.bulkDelete(deleteAmount).then((messages) => {
+    message.channel.bulkDelete(deleteAmount, true).then((messages) => {
       message.channel.send(`${messages.size - 1} messages deleted.`).then((mess) => {
         setTimeout(() => {
           mess.delete();
