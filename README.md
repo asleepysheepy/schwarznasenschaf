@@ -18,4 +18,4 @@ A discord bot for the r/transprogrammer server
 1) Add your token to `src/config/config.js`
 1) Run the bot `$ yarn start`
 
-**You can stop TPDB with ctrl+C
+**You can stop TPDB with ctrl+C**
