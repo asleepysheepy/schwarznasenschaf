@@ -1,21 +1,22 @@
-# Transprogrammer Discord Bot
+# Schwarznasenschaf
 
-A discord bot for the r/transprogrammer server
+A discord bot for the r/transprogrammer discord server
 
-## Running TPDB
+## Running Schwarznasenschaf
 
 ### Requirements
 
 * Git
-* Node
-* Yarn
+* Ruby
+* Docker
+* Docker Compose
 * Discord bot token
 
 ### Installing
 
-1) Clone this repository and cd into the directory `$ git clone https://github.com/transprogrammer/TPDB.git tpdb && cd tpdb`
-1) Install yarn dependencies `$ yarn install`
-1) Add your token to `src/config/config.js`
-1) Run the bot `$ yarn start`
+1) Clone this repository and cd into the directory `$ git clone https://github.com/transprogrammer/schwarznasenschaf.git schwarznasenschaf && cd schwarznasenschaf`
+1) Build the docker image `$ docker-compose build`
+1) Add your token to `docker-compose.yml`
+1) Run the bot `$ docker-compose up`
 
-**You can stop TPDB with ctrl+C**
+**You can stop Schwarznasenschaf with ctrl+C**
