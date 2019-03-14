@@ -4,6 +4,7 @@ module Schwarznasenschaf
   module Events
     module MemberJoinEvent
       extend Discordrb::EventContainer
+
       member_join do |event|
         member = event.member
         welcome_message = "Welcome #{member.mention}! "\
