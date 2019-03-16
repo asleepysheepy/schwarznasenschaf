@@ -5,11 +5,19 @@ module Schwarznasenschaf
     module Verify
       extend Discordrb::Commands::CommandContainer
 
-      command :verify do |event, *args|
-        can_use = Commands.sender_has_role? event.author, :mod_team
-        return Support::Config::NO_PERMISSION_MESSAGE unless can_use
+      command_attributes = {
+        description: 'Verifies the mentioned user and optionally clears chat',
+        help_available: true,
+        max_args: 2,
+        min_args: 1,
+        rescue: 'An  error occured while trying to execute this command.',
+        required_roles: [Support::Config::ROLES[:mod_team]],
+        usage: 'verify [mentioned_user] <messages_to_clear>'
+      }
 
+      command :verify, command_attributes do |event, *args|
         user = event.message.mentions.first
+        return unless user
 
         set_roles user, event.server
         send_bot_channel_messages user, event.server

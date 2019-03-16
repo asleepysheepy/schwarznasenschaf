@@ -1,15 +1,7 @@
 # frozen_string_literal: true
 
-require 'byebug'
-
 module Schwarznasenschaf
   module Commands
-    def self.sender_has_role?(sender, role_to_check)
-      sender.roles.any? do |role|
-        role.id == Support::Config::ROLES[role_to_check]
-      end
-    end
-
     def self.send_and_delete(channel, message_text)
       sent_message = channel.send message_text
 
