@@ -5,10 +5,17 @@ module Schwarznasenschaf
     module Clear
       extend Discordrb::Commands::CommandContainer
 
-      command :clear do |event, num_to_delete|
-        can_use = Commands.sender_has_role? event.author, :mod_team
-        return Support::Config::NO_PERMISSION_MESSAGE unless can_use
+      command_attributes = {
+        description: 'Clears the last [x] messages from the channel',
+        help_available: true,
+        max_args: 1,
+        min_args: 1,
+        rescue: 'An  error occured while trying to execute this command.',
+        required_roles: [Support::Config::ROLES[:mod_team]],
+        usage: 'clear [number]'
+      }
 
+      command :clear, command_attributes do |event, num_to_delete|
         result = Commands.bulk_delete event.channel, num_to_delete.to_i
         Commands.send_and_delete event.channel, result
       end
