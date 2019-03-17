@@ -19,7 +19,7 @@ module Schwarznasenschaf
         user = event.message.mentions.first
         return unless user
 
-        "✅ Baaaaaaaa​ned #{user.username}##{user.discriminator}"
+        "✅ Baaaaaaaa​nned #{user.username}##{user.discriminator}"
       end
     end
   end
