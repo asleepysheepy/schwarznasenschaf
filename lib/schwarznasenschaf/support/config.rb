@@ -8,7 +8,7 @@ module Schwarznasenschaf
         general: 309_382_568_896_233_476,
         join_messages: 352_215_874_771_615_754,
         leave_messages: 309_382_568_896_233_476,
-        rlues: 300_991_962_876_608_512
+        rules: 300_991_962_876_608_512
       }.freeze
 
       NO_PERMISSION_MESSAGE = 'You don\'t have permission to use this command.'
