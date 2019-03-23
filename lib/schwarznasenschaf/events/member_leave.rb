@@ -7,7 +7,7 @@ module Schwarznasenschaf
 
       member_leave do |event|
         member = event.member
-        leave_message = "#{member.mention} has left the server."
+        leave_message = "#{member.distinct} has left the server."
 
         leave_message_channel = event.server.channels.detect do |channel|
           channel.id == Support::Config::CHANNELS[:leave_messages]
