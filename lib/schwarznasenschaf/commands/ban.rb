@@ -2,7 +2,7 @@
 
 module Schwarznasenschaf
   module Commands
-    module Clear
+    module Ban
       extend Discordrb::Commands::CommandContainer
 
       command_attributes = {
@@ -15,7 +15,7 @@ module Schwarznasenschaf
         usage: 'ban [user]'
       }
 
-      command :ban, command_attributes do |event, user|
+      command :ban, command_attributes do |event|
         user = event.message.mentions.first
         return unless user
 
