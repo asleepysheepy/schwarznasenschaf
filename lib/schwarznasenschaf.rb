@@ -21,6 +21,7 @@ module Schwarznasenschaf
   load_module :Events, 'events'
   load_module :Commands, 'commands'
   require 'schwarznasenschaf/commands'
+  require 'schwarznasenschaf/support'
 
   Signal.trap 'INT' do
     # rubocop:disable Lint/HandleExceptions
