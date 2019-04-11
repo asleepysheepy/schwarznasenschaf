@@ -45,6 +45,8 @@ module Schwarznasenschaf
           embed.add_field name: 'Slowmode',
                           value: channel.slowmode?,
                           inline: true
+          embed.add_field name: 'Created at',
+                          value: channel.creation_time.strftime(TIME_FORMAT)
           embed.add_field name: 'Topic',
                           value: channel.topic
         end
