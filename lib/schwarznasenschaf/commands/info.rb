@@ -99,6 +99,66 @@ module Schwarznasenschaf
                           value: role.creation_time.strftime(TIME_FORMAT)
         end
       end
+
+      server_command_attributes = {
+        aliases: ['serverinfo'],
+        description: 'Gets some info about the server',
+        help_available: true,
+        max_args: 0,
+        min_args: 0,
+        rescue: 'An  error occured while trying to execute this command.',
+        required_roles: [Support::Config::ROLES[:verified]],
+        usage: 'server_info'
+      }
+
+      command :server_info, server_command_attributes do |event|
+        server = event.server
+        people = server.members.reject(&:bot_account?)
+        bots = server.members.select(&:bot_account?)
+
+        Support.send_embed event.channel, event.author, event.bot do |embed|
+          embed.title = 'Server Info'
+
+          embed.add_field name: 'Name',
+                          value: server.name,
+                          inline: true
+          embed.add_field name: 'ID',
+                          value: server.id,
+                          inline: true
+          embed.add_field name: 'Region',
+                          value: server.region_id,
+                          inline: true
+          embed.add_field name: 'Categories',
+                          value: server.categories.length,
+                          inline: true
+          embed.add_field name: 'Text Channels',
+                          value: server.text_channels.length,
+                          inline: true
+          embed.add_field name: 'Voice Channels',
+                          value: server.voice_channels.length,
+                          inline: true
+          embed.add_field name: 'Total Members',
+                          value: server.members.length,
+                          inline: true
+          embed.add_field name: 'Online Members',
+                          value: server.online_members.length,
+                          inline: true
+          embed.add_field name: 'People',
+                          value: people.length,
+                          inline: true
+          embed.add_field name: 'Bots',
+                          value: bots.length,
+                          inline: true
+          embed.add_field name: 'Roles',
+                          value: server.roles.length,
+                          inline: true
+          embed.add_field name: 'emojis',
+                          value: server.emojis.length,
+                          inline: true
+          embed.add_field name: 'Created at',
+                          value: server.creation_time.strftime(TIME_FORMAT)
+        end
+      end
     end
   end
 end
