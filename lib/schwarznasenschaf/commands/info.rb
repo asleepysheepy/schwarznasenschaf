@@ -159,6 +159,52 @@ module Schwarznasenschaf
                           value: server.creation_time.strftime(TIME_FORMAT)
         end
       end
+
+      user_command_attributes = {
+        aliases: ['userinfo'],
+        description: 'Gets some info about the given user, if no user'\
+                     'is given, uses the user which used the command.',
+        help_available: true,
+        max_args: 1,
+        min_args: 0,
+        rescue: 'An  error occured while trying to execute this command.',
+        required_roles: [Support::Config::ROLES[:verified]],
+        usage: 'user_info <user>'
+      }
+
+      command :user_info, user_command_attributes do |event, user_id|
+        user = event.server.member event.message.mentions.first&.id
+        user ||= event.server.member user_id
+        user ||= event.author
+
+        Support.send_embed event.channel, event.author, event.bot do |embed|
+          embed.title = 'User Info'
+          embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(
+            url: user.avatar_url
+          )
+
+          embed.add_field name: 'Name',
+                          value: user.distinct,
+                          inline: true
+          embed.add_field name: 'ID',
+                          value: user.id,
+                          inline: true
+          embed.add_field name: 'Display Name',
+                          value: user.mention,
+                          inline: true
+          embed.add_field name: 'Status',
+                          value: user.status,
+                          inline: true
+          embed.add_field name: 'Joined At',
+                          value: user.joined_at.strftime(TIME_FORMAT),
+                          inline: true
+          embed.add_field name: 'Created At',
+                          value: user.creation_time.strftime(TIME_FORMAT),
+                          inline: true
+          embed.add_field name: 'Roles',
+                          value: user.roles.map(&:mention).join(', ')
+        end
+      end
     end
   end
 end
