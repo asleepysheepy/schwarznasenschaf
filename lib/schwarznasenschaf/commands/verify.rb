@@ -49,7 +49,7 @@ module Schwarznasenschaf
         end
 
         bots_message = "#{user.mention} you can assign yourself roles here: "\
-                       "https://rp.kat.cafe/s/#{server.id}"
+                       "https://roleypoly.com/s/#{server.id}"
 
         bots_channel.send bots_message
       end
