@@ -3,3 +3,11 @@ AllCops:
 
 Style/Documentation:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'lib/schwarznasenschaf/commands/info.rb'
+
+Metrics/ModuleLength:
+  Exclude:
+    - 'lib/schwarznasenschaf/commands/info.rb'
