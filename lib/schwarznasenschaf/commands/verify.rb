@@ -35,12 +35,8 @@ module Schwarznasenschaf
         role_to_add = server.roles.detect do |role|
           role.id == Support::Config::ROLES[:verified]
         end
-        role_to_remove = server.roles.detect do |role|
-          role.id == Support::Config::ROLES[:just_joined]
-        end
 
         member.add_role role_to_add
-        member.remove_role role_to_remove
       end
 
       def self.send_bot_channel_messages(user, server)

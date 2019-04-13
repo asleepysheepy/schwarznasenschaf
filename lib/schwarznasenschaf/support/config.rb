@@ -16,7 +16,6 @@ module Schwarznasenschaf
       PREFIX = '?'
 
       ROLES = {
-        just_joined: 325_076_131_986_276_352,
         verified: 309_382_083_724_312_576,
         mod_team: 489_572_548_720_328_725
       }.freeze
