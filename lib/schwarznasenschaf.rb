@@ -1,27 +1,18 @@
 # frozen_string_literal: true
 
 require 'discordrb'
-require 'schwarznasenschaf/support/config'
 
 module Schwarznasenschaf
+  require 'schwarznasenschaf/config'
+  require 'schwarznasenschaf/support'
+
   SCHWARZNASENSCHAF = Discordrb::Commands::CommandBot.new(
-    token: Support::Config::TOKEN,
-    prefix: Support::Config::PREFIX
+    token: Config::TOKEN,
+    prefix: Config::PREFIX
   )
 
-  def self.load_module(name, path)
-    new_module = Module.new
-    const_set name, new_module
-    Dir["lib/schwarznasenschaf/#{path}/*.rb"].each { |file| load file }
-    new_module.constants.each do |mod|
-      SCHWARZNASENSCHAF.include! new_module.const_get(mod)
-    end
-  end
-
-  load_module :Events, 'events'
-  load_module :Commands, 'commands'
-  require 'schwarznasenschaf/commands'
-  require 'schwarznasenschaf/support'
+  load 'lib/schwarznasenschaf/admin.rb'
+  load 'lib/schwarznasenschaf/core.rb'
 
   Signal.trap 'INT' do
     # rubocop:disable Lint/HandleExceptions
