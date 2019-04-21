@@ -4,10 +4,15 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
-Metrics/BlockLength:
-  Exclude:
-    - 'lib/schwarznasenschaf/commands/info.rb'
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+
+Metrics/MethodLength:
+  Max: 15
 
 Metrics/ModuleLength:
   Exclude:
-    - 'lib/schwarznasenschaf/commands/info.rb'
+    - 'lib/schwarznasenschaf/admin/commands/info.rb'
+
+Metrics/LineLength:
+  Max: 120
