@@ -16,5 +16,5 @@ module Schwarznasenschaf::Config
     mod_team: 489_572_548_720_328_725
   }.freeze
 
-  TOKEN = 'NTM1MTA0NjAxMTU0NzgxMTg0.XLTUHA.5geVdvwYWeKZXkjr8gJ9MIFHU74' # ENV['TOKEN']
+  TOKEN = ENV['TOKEN']
 end
