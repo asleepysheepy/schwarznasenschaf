@@ -23,8 +23,8 @@ module Schwarznasenschaf::Admin::Commands::Verify
 
     return if args.last.to_i.zero?
 
-    result = Commands.bulk_delete event.channel, args.last.to_i
-    Commands.send_and_delete event.channel, result
+    result = Schwarznasenschaf::Admin::Commands.bulk_delete event.channel, args.last.to_i
+    Schwarznasenschaf::Admin::Commands.send_and_delete event.channel, result
   end
 
   def self.set_roles(user, server)
