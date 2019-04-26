@@ -12,8 +12,7 @@ module Schwarznasenschaf::Config
   PREFIX = '?'
 
   ROLES = {
-    # verified: 309_382_083_724_312_576,
-    verified: 342_839_099_943_813_120,
+    verified: 309_382_083_724_312_576,
     mod_team: 489_572_548_720_328_725
   }.freeze
 
