@@ -9,7 +9,7 @@ module Schwarznasenschaf::Admin::Commands::Clear
     max_args: 1,
     min_args: 1,
     rescue: 'An  error occured while trying to execute this command.',
-    # required_roles: [Schwarznasenschaf::Config::ROLES[:mod_team]],
+    required_roles: [Schwarznasenschaf::Config::ROLES[:mod_team]],
     usage: 'clear [number]'
   }
 
