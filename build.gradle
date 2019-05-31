@@ -1,0 +1,35 @@
+plugins {
+  id 'java'
+  id 'application'
+}
+
+group 'net.flutterflies.schwarznasenschaf'
+version '0.0.1'
+
+mainClassName = 'net.flutterflies.schwarznasenschaf.Schwarznasenschaf'
+
+sourceCompatibility = 1.12
+
+repositories {
+  mavenCentral()
+  jcenter()
+}
+
+dependencies {
+  compile 'com.jagrosh:jda-utilities:2.1.5'
+  compile ('net.dv8tion:JDA:3.8.3_463') {
+    exclude module: 'opus-java'
+  }
+}
+
+task fatJar(type: Jar) {
+  manifest {
+    attributes (
+      'Main-Class': mainClassName,
+      'Class-Path': configurations.compile.collect { it.getName() }.join(' ')
+    )
+  }
+  baseName = project.name + '-all'
+  from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+  with jar
+}
