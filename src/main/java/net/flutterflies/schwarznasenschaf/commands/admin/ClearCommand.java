@@ -4,7 +4,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 
 import net.flutterflies.schwarznasenschaf.commands.SchafCommand;
 
-public class ClearCommand extends SchafCommand {
+public final class ClearCommand extends SchafCommand {
   public ClearCommand() {
     super();
     this.name = "clear";

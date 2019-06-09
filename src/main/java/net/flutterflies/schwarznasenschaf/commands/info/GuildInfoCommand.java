@@ -12,7 +12,7 @@ import net.flutterflies.schwarznasenschaf.SchafEmbedBuilder;
 import net.flutterflies.schwarznasenschaf.commands.SchafCommand;
 
 
-public class GuildInfoCommand extends SchafCommand {
+public final class GuildInfoCommand extends SchafCommand {
   public GuildInfoCommand() {
     super();
     this.name = "guild_info";

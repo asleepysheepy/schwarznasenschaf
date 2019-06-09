@@ -9,7 +9,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import net.flutterflies.schwarznasenschaf.SchafEmbedBuilder;
 import net.flutterflies.schwarznasenschaf.commands.SchafCommand;
 
-public class UserInfoCommand extends SchafCommand {
+public final class UserInfoCommand extends SchafCommand {
   public UserInfoCommand() {
     super();
     this.name = "user_info";
@@ -44,7 +44,7 @@ public class UserInfoCommand extends SchafCommand {
   private MessageEmbed buildEmbed(Member member, User author, Guild guild) {
     User user = member.getUser();
 
-    String roles = String.join(", ", member.getRoles().stream().map(Role::getAsMention).collect(Collectors.joining()));
+    String roles = member.getRoles().stream().map(Role::getAsMention).collect(Collectors.joining(", "));
     String createdAtTime = member.getUser().getCreationTime().format(DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' HH:mm"));
     String joinedAtTime = member.getJoinDate().format(DateTimeFormatter.ofPattern("MM/dd/yyyy 'at' HH:mm"));
 

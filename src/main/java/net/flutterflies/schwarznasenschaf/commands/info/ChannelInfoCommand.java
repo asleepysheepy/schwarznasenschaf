@@ -11,7 +11,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import net.flutterflies.schwarznasenschaf.SchafEmbedBuilder;
 import net.flutterflies.schwarznasenschaf.commands.SchafCommand;
 
-public class ChannelInfoCommand extends SchafCommand {
+public final class ChannelInfoCommand extends SchafCommand {
   public ChannelInfoCommand() {
     super();
     this.name = "channel_info";

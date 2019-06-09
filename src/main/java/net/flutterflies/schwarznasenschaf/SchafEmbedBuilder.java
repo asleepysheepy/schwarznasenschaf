@@ -7,7 +7,7 @@ import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.User;
 
-public class SchafEmbedBuilder extends EmbedBuilder {
+public final class SchafEmbedBuilder extends EmbedBuilder {
 
   public SchafEmbedBuilder(String title, User author, Guild guild) {
     String authorName = author.getName() + "#" + author.getDiscriminator();

@@ -12,7 +12,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import net.flutterflies.schwarznasenschaf.SchafEmbedBuilder;
 import net.flutterflies.schwarznasenschaf.commands.SchafCommand;
 
-public class RoleInfoCommand extends SchafCommand {
+public final class RoleInfoCommand extends SchafCommand {
   public RoleInfoCommand() {
     super();
     this.name = "role_info";
@@ -53,10 +53,6 @@ public class RoleInfoCommand extends SchafCommand {
   }
 
   private String toHexString(Color color) {
-    String hexColor = Integer.toHexString(color.getRGB() & 0xffffff);
-    if (hexColor.length() < 6) {
-      hexColor = "000000".substring(0, 6 - hexColor.length()) + hexColor;
-    }
-    return "#" + hexColor;
+    return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
   }
 }
