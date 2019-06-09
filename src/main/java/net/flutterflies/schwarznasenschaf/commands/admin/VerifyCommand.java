@@ -6,7 +6,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import net.flutterflies.schwarznasenschaf.SchafConfig;
 import net.flutterflies.schwarznasenschaf.commands.SchafCommand;
 
-public class VerifyCommand extends SchafCommand {
+public final class VerifyCommand extends SchafCommand {
   public VerifyCommand() {
     super();
     this.name = "verify";

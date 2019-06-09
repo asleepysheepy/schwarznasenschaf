@@ -5,7 +5,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 
 import net.flutterflies.schwarznasenschaf.commands.SchafCommand;
 
-public class BanCommand extends SchafCommand {
+public final class BanCommand extends SchafCommand {
   public BanCommand() {
     super();
     this.name = "ban";

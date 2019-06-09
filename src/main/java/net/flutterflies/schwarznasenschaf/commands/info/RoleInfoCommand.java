@@ -12,7 +12,7 @@ import com.jagrosh.jdautilities.command.CommandEvent;
 import net.flutterflies.schwarznasenschaf.SchafEmbedBuilder;
 import net.flutterflies.schwarznasenschaf.commands.SchafCommand;
 
-public class RoleInfoCommand extends SchafCommand {
+public final class RoleInfoCommand extends SchafCommand {
   public RoleInfoCommand() {
     super();
     this.name = "role_info";

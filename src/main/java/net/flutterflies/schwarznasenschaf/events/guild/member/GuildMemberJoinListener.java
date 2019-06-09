@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
 import net.flutterflies.schwarznasenschaf.SchafConfig;
 
-public class GuildMemberJoinListener extends ListenerAdapter {
+public final class GuildMemberJoinListener extends ListenerAdapter {
 
   @Override
   public void onGuildMemberJoin(GuildMemberJoinEvent event) {

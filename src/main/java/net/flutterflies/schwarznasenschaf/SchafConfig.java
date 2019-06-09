@@ -3,7 +3,7 @@ package net.flutterflies.schwarznasenschaf;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SchafConfig {
+public final class SchafConfig {
   public static final Map<String, String> CHANNELS = new HashMap<>();
   public static final Map<String, String> ROLES = new HashMap<>();
 

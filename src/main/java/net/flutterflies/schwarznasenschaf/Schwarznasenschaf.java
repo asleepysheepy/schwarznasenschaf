@@ -15,7 +15,7 @@ import net.flutterflies.schwarznasenschaf.commands.info.RoleInfoCommand;
 import net.flutterflies.schwarznasenschaf.commands.info.UserInfoCommand;
 import net.flutterflies.schwarznasenschaf.events.guild.member.GuildMemberJoinListener;
 
-public class Schwarznasenschaf {
+public final class Schwarznasenschaf {
   public static void main(String[] args) throws LoginException, InterruptedException {
     String token = args[0];
 
