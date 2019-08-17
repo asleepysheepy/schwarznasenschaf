@@ -1,6 +1,8 @@
 package net.flutterflies.schwarznasenschaf.events.guild.member;
 
+import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.TextChannel;
+import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 
@@ -17,5 +19,16 @@ public final class GuildMemberJoinListener extends ListenerAdapter {
       "Please confirm you have read the " + rulesChannel.getAsMention() + " and tell us how you identify.";
 
     welcomeChannel.sendMessage(message).queue();
+
+    log(event.getUser(), event.getJDA());
+  }
+
+  private void log(User user, JDA jda) {
+    TextChannel loggingChannel = jda.getTextChannelById(SchafConfig.LOGGING_CHANNELS.get("memberships"));
+
+    String message = user.getName() + "#" + user.getDiscriminator() + " with ID `" + user.getId() +
+      "` has joined the server.";
+
+    loggingChannel.sendMessage(message).queue();
   }
 }

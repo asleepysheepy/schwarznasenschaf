@@ -1,5 +1,6 @@
 package net.flutterflies.schwarznasenschaf.commands.admin;
 
+import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
@@ -36,6 +37,8 @@ public final class VerifyCommand extends SchafCommand {
         event.getTextChannel().sendMessage("Unable to clear messages, invalid number provided").queue();
       }
     }
+
+    log(event.getJDA(), event.getAuthor(), memberToVerify.getUser());
   }
 
   private void verify(CommandEvent event, Member memberToVerify) {
@@ -54,6 +57,15 @@ public final class VerifyCommand extends SchafCommand {
 
     generalChannel.sendMessage(generalMessage).queue();
     botsChannel.sendMessage(botsMessage).queue();
+  }
+
+  private void log(JDA jda, User verifiedUser, User commandUser) {
+    TextChannel loggingChannel = jda.getTextChannelById(SchafConfig.LOGGING_CHANNELS.get("membership"));
+
+    String message = commandUser.getName() + "#" + commandUser.getDiscriminator() + " has verified " +
+      verifiedUser.getName() + "#" + verifiedUser.getDiscriminator();
+
+    loggingChannel.sendMessage(message).queue();
   }
 
   private String[] parseArgs(String args) {
