@@ -13,7 +13,10 @@ import net.flutterflies.schwarznasenschaf.commands.info.ChannelInfoCommand;
 import net.flutterflies.schwarznasenschaf.commands.info.GuildInfoCommand;
 import net.flutterflies.schwarznasenschaf.commands.info.RoleInfoCommand;
 import net.flutterflies.schwarznasenschaf.commands.info.UserInfoCommand;
+import net.flutterflies.schwarznasenschaf.events.guild.GuildBanListener;
+import net.flutterflies.schwarznasenschaf.events.guild.GuildUnbanListener;
 import net.flutterflies.schwarznasenschaf.events.guild.member.GuildMemberJoinListener;
+import net.flutterflies.schwarznasenschaf.events.guild.member.GuildMemberLeaveListener;
 
 public final class Schwarznasenschaf {
   public static void main(String[] args) throws LoginException, InterruptedException {
@@ -50,7 +53,11 @@ public final class Schwarznasenschaf {
 
     builder.addEventListener(
       commandBuilder.build(),
-      new GuildMemberJoinListener()
+
+      new GuildBanListener(),
+      new GuildUnbanListener(),
+      new GuildMemberJoinListener(),
+      new GuildMemberLeaveListener()
     );
 
     builder.build().awaitReady();
