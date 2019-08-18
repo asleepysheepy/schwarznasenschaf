@@ -1,10 +1,1 @@
-*.iml
-.gradle/
-.idea/
-build/
-classes/
-compiled/
-docs/
-out/
-run/
 .DS_Store
