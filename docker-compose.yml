@@ -1,0 +1,31 @@
+
+version: '3'
+
+volumes:
+  redis:
+  postgres:
+
+services:
+  redis:
+    image: redis:latest
+    volumes:
+      - redis:/data
+  postgres:
+    image: 'postgres:latest'
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+    environment:
+      POSTGRES_USER:
+      POSTGRES_PASSWORD:
+  bot:
+    build: .
+    restart: always
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - redis
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - TOKEN=

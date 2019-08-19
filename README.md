@@ -1,24 +1,22 @@
-# Schwarznasenschaf	
+# Schwarznasenschaf
 
-A discord bot for the r/transprogrammer discord server	
+A discord bot for the r/transcoders discord server
 
-## Running Schwarznasenschaf	
+## Running Schwarznasenschaf
 
-### Requirements	
+### Requirements
 
-* Git	
-* Java 12
-* Discord bot token	
+* Git
+* Ruby
+* Docker
+* Docker Compose
+* Discord bot token
 
- ### Installing	and building
+### Installing
 
-1) Clone this repository and cd into the directory `$ git clone https://github.com/transprogrammer/schwarznasenschaf.git schwarznasenschaf && cd schwarznasenschaf`	
-1) Build the jar with `./gradlew fatJar`
+1) Clone this repository and cd into the directory `$ git clone https://github.com/flutterflies/schwarznasenschaf.git schwarznasenschaf && cd schwarznasenschaf`
+1) Build the docker image `$ docker-compose build`
+1) Add your token to `docker-compose.yml`
+1) Run the bot `$ docker-compose up`
 
-### Running
-1) Change into the build directory `cd build/libs`
-1) Run the jar `java -jar Schwarznasenschaf-all-<version>.jar <token>`
-
- **You can stop Schwarznasenschaf with ctrl+C**
- 
- 
+**You can stop Schwarznasenschaf with ctrl+C**
