@@ -17,5 +17,6 @@ module Schwarznasenschaf
     command(:user_info, Info::Attributes::USER) { |event, user_id| Info.user event, user_id }
 
     command(:ban, Miscellaneous::Attributes::BAN) { |event| Miscellaneous.ban event }
+    command(:sudo, Miscellaneous::Attributes::SUDO) { |event| Miscellaneous.sudo event }
   end
 end
