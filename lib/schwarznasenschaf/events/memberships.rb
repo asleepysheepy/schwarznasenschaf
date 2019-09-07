@@ -7,7 +7,7 @@ module Schwarznasenschaf::Events
     def self.on_member_join(event)
       member = event.member
 
-      channel = event.server.channels.detect { |c| c.id == Schwarznasenschaf::Config::CHANNELS[:general] }
+      channel = event.server.channels.detect { |c| c.id == Schwarznasenschaf::Config::CHANNELS[:welcome] }
       channel.send(_join_message(member))
 
       log_message = "#{_log_message_base(member)} has joined the server."
