@@ -16,7 +16,11 @@ module Schwarznasenschaf
       membership: 571_158_370_610_970_625
     }.freeze
 
+    POSTGRES_URL = ENV["POSTGRES_URL"]
+
     PREFIX = "?"
+
+    REDIS_URL = ENV["REDIS_URL"]
 
     ROLES = {
       mod_team: 489_572_548_720_328_725,
