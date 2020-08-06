@@ -33,10 +33,7 @@ export default class CommandHandler {
     const command = this.commands.get(commandName)
       || this.commands.find((cmd) => cmd.aliases && cmd.aliases.includes(commandName))
 
-    if (!command) {
-      message.channel.send(`Unknown command: ${commandName}`)
-      return
-    }
+    if (!command) { return }
 
     if (this._checkConditions(command, message, args)) {
       try {
