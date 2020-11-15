@@ -1,1 +1,1 @@
-worker: NODE_ENV=production yarn bot:start
+worker: yarn start
