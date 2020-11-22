@@ -1,4 +1,5 @@
 import Command from './command'
+import Logger from '../utils/logger'
 import commands from '../commands'
 import config from '../config'
 import { Collection, Message, Role, Snowflake } from 'discord.js'
@@ -51,16 +52,22 @@ export const handleCommand = (message: Message): void => {
   const args = message.content.slice(config().prefix.length).split(/ +/)
   const commandName = args.shift()?.toLowerCase()
   if (!commandName) { return }
+  Logger.info('Attempting to handle a command')
 
   const command = findCommand(commandName)
-  if (!command) { return }
+  if (!command) {
+    Logger.info(`Attempted to execute the command ${commandName} but it was not found`)
+    return
+  }
 
-  if (checkConditions(command, message, args)) {
-    try {
-      command.execute(message, args)
-    } catch (error) {
-      message.channel.send(`An error ocurred executing command: ${commandName}`)
-      console.error(error) //eslint-disable-line no-console
-    }
+  if (!checkConditions(command, message, args)) {
+    Logger.info(`Attempted to execute command ${commandName} but the required conditions were not met`)
+    return
+  }
+  try {
+    command.execute(message, args)
+  } catch (error) {
+    message.channel.send(`An error ocurred executing command: ${commandName}`)
+    Logger.error(`Attempted to exectue the command ${commandName} but the following error occured: ${error}`)
   }
 }

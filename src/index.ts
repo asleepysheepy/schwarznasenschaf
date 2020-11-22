@@ -1,4 +1,5 @@
 import * as CommandHandler from './commands/command-handler'
+import Logger from './utils/logger'
 import events from './events'
 import { Client, ClientOptions } from 'discord.js'
 
@@ -23,9 +24,11 @@ const client = new Client(clientOptions)
 events.forEach((event) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handle = async (...args: Array<any>) => {
+    Logger.info(`Handling a '${event.name}' event.`)
     await event.handle(...args, client)
   }
 
+  Logger.info(`Registering an event handler for ${event.name} events.`)
   client.on(event.name, handle)
 })
 
