@@ -1,12 +1,30 @@
 import * as CommandHandler from './commands/command-handler'
 import events from './events'
-import { Client } from 'discord.js'
+import { Client, ClientOptions } from 'discord.js'
 
-const client = new Client()
+const hoursToSeconds = (hours: number): number => hours * 60 * 60
+
+const clientOptions: ClientOptions = {
+  messageCacheMaxSize: Infinity,
+  messageCacheLifetime: hoursToSeconds(48),
+  messageSweepInterval: hoursToSeconds(1),
+  fetchAllMembers: true,
+  partials: [
+    'USER',
+    'GUILD_MEMBER',
+    'MESSAGE',
+    'REACTION',
+  ],
+}
+
+const client = new Client(clientOptions)
 
 // Set up all event listeners in ./events
 events.forEach((event) => {
-  const handle = async (...args: Array<any>) => await event.handle(...args, client) // eslint-disable-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handle = async (...args: Array<any>) => {
+    await event.handle(...args, client)
+  }
 
   client.on(event.name, handle)
 })
