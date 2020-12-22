@@ -1,8 +1,8 @@
 import Command from './command'
-import Logger from '../utils/logger'
 import commands from '../commands'
 import config from '../config'
 import { Collection, Message, Role, Snowflake } from 'discord.js'
+import { Logger } from '../utils/logger'
 
 const findCommand = (commandName: string): Command | undefined => {
   return commands.find((c) => c.name === commandName || c.aliases?.includes(commandName))

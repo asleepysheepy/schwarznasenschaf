@@ -1,7 +1,7 @@
 import * as CommandHandler from './commands/command-handler'
-import Logger from './utils/logger'
 import events from './events'
 import { Client, ClientOptions } from 'discord.js'
+import { Logger } from './utils/logger'
 
 const hoursToSeconds = (hours: number): number => hours * 60 * 60
 
