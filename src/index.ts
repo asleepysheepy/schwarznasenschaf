@@ -1,5 +1,5 @@
-import * as CommandHandler from './commands/command-handler'
 import { Client, ClientOptions } from 'discord.js'
+import { CommandHandler } from './commands/command-handler'
 import { Events } from './events'
 import { Logger } from './utils/logger'
 

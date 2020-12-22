@@ -1,5 +1,5 @@
-import config from '../../config'
 import { Client } from 'discord.js'
+import { Commands } from '../../commands'
 import { Event } from '../event'
 
 /**
@@ -11,6 +11,6 @@ import { Event } from '../event'
 export const ReadyEvent: Event = {
   name: 'ready',
   handle: async (client: Client) => {
-    client.user?.setActivity(`${config().prefix}help`, { type: 'LISTENING' })
+    client.user?.setActivity(`${Commands.COMMAND_PREFIX}help`, { type: 'LISTENING' })
   },
 }
