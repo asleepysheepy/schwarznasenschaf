@@ -10,7 +10,6 @@ interface Config {
     messages: string,
     roles: string,
   },
-  prefix: string,
   roles: {
     modTeam: string,
     verified: string,
@@ -29,7 +28,6 @@ export const configProd = {
     messages: '571158292148256790',
     roles: '571158370610970625',
   },
-  prefix: '?',
   roles: {
     modTeam: '489572548720328725',
     verified: '309382083724312576',
@@ -48,7 +46,6 @@ export const configDev = {
     messages: '643220517415026699',
     roles: '643220607500288000',
   },
-  prefix: '!',
   roles: {
     modTeam: '537015927468851222',
     verified: '578072181540388864',
@@ -56,5 +53,5 @@ export const configDev = {
 }
 
 export default function buildConfig(): Config {
-  return process.env['NODE_ENV'] === 'production' ? configProd : configDev
+  return process.env.NODE_ENV === 'production' ? configProd : configDev
 }

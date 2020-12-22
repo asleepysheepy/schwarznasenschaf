@@ -1,17 +1,35 @@
-import Command from '../command'
 import config from '../../config'
+import { Command} from '../command'
+import { CommandUtils } from '../../utils/commands'
 import { GuildMember, Message, Snowflake, TextChannel } from 'discord.js'
-import { bulkDeleteMessages, sendAndDeleteMessage } from '../../utils/commands'
 
+/**
+ * Check to see if the given guild member has the given role.
+ *
+ * @param member The guild member to check
+ * @param roleId the role to check for
+ */
 const hasRole = (member: GuildMember, roleId: Snowflake) => {
   const roles = member.roles.cache
   return roles.keyArray().includes(roleId)
 }
 
+/**
+ * Gives the user the verified role.
+ *
+ * @param member The member to give the roles to
+ */
 const setRoles = (member: GuildMember) => {
   member.roles.add(config().roles.verified)
 }
 
+/**
+ * Sends a welcome message to the user in the general channel and
+ * a message about self assignable roles in the bots channel.
+ *
+ * @param member the member who was verified
+ * @param message the message containing the command
+ */
 const sendMessages = async (member: GuildMember, message: Message) => {
   const guild = message.guild
   if (!guild) { return }
@@ -23,6 +41,13 @@ const sendMessages = async (member: GuildMember, message: Message) => {
   channel.send(`Welcome ${member.user}`)
 }
 
+/**
+ * Deletes the given number of messages from the verification process.
+ *
+ * @param message The message which ran the command
+ * @param args the args passed to the commands,
+ *   contains the number of message to delete.
+ */
 const deleteMessages = (message: Message, args: Array<string>) => {
   if (args[1]) {
     const numberMessagesToDelete = parseInt(args[1])
@@ -33,13 +58,16 @@ const deleteMessages = (message: Message, args: Array<string>) => {
     }
 
     const channel = message.channel as TextChannel
-    if (bulkDeleteMessages(channel, numberMessagesToDelete)) {
-      sendAndDeleteMessage('', channel, 5)
+    if (CommandUtils.bulkDeleteMessages(channel, numberMessagesToDelete)) {
+      CommandUtils.sendAndDeleteMessage('', channel, 5)
     }
   }
 }
 
-const VerifyCommand: Command = {
+/**
+ * Utility command for verifing new users.
+ */
+export const VerifyCommand: Command = {
   name: 'verify',
   description: 'Verifies the mentioned user and optionally clears chat',
   maxArgs: 2,
@@ -64,5 +92,3 @@ const VerifyCommand: Command = {
     deleteMessages(message, args)
   },
 }
-
-export default VerifyCommand

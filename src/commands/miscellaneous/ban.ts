@@ -1,5 +1,5 @@
-import Command from '../command'
 import config from '../../config'
+import { Command } from '../command'
 import { Message } from 'discord.js'
 
 const getUser = async (message: Message, args: Array<string>) => {
@@ -8,7 +8,10 @@ const getUser = async (message: Message, args: Array<string>) => {
   await message.guild?.members?.resolve(args[0])?.user
 }
 
-const BanCommand: Command = {
+/**
+ * A fun command that posts a fake ban message about the given user.
+ */
+export const BanCommand: Command = {
   name: 'ban',
   description: 'Bans the given user, no really it does!',
   minArgs: 1,
@@ -23,5 +26,3 @@ const BanCommand: Command = {
     message.channel.send(replyText)
   },
 }
-
-export default BanCommand

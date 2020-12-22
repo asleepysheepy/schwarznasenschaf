@@ -1,9 +1,19 @@
-import Command from '../command'
 import config from '../../config'
-import createEmbed from '../../utils/embeds'
+import { Command } from '../command'
+import { DateUtils } from '../../utils/date'
+import { EmbedUtils } from '../../utils/embeds'
 import { Message, Role } from 'discord.js'
-import { formatDate } from '../../utils/date'
 
+/**
+ * Gets the role to retrive info for.
+ *
+ * Attempts to resolve the role as follows:
+ * 1) Check for a mentioned role
+ * 2) Attempts a Snowflake from the command arguments
+ *
+ * @param message The message with the command
+ * @param args The arguments to the command, may contain the role.
+ */
 const getRole = async (message: Message, args: Array<string>) => {
   if (message.mentions.roles.size > 0) { return message.mentions.roles.first() }
   if (!args[0]) { return }
@@ -14,8 +24,14 @@ const getRole = async (message: Message, args: Array<string>) => {
   message.channel.send(`Unable to find role: ${args[0]}`)
 }
 
+/**
+ * Builds the embed with the role info to post.
+ *
+ * @param message The message which ran the command
+ * @param role The role to post information about
+ */
 const buildDetails = async (message: Message, role: Role) => {
-  return (await createEmbed(message))
+  return (await EmbedUtils.createEmbed(message.author, message.client))
     .setTitle('Role Info')
     .setColor(role.hexColor)
     .addField('Name', role.name, true)
@@ -26,10 +42,13 @@ const buildDetails = async (message: Message, role: Role) => {
     .addField('Mention', role, true)
     .addField('Position', role.position, true)
     .addField('Hoisted', role.hoist, true)
-    .addField('Created At', formatDate(role.createdAt))
+    .addField('Created At', DateUtils.formatDate(role.createdAt))
 }
 
-const RoleInfoCommand: Command = {
+/**
+ * A util command to post info about a role.
+ */
+export const RoleInfoCommand: Command = {
   name: 'role_info',
   aliases: ['roleinfo', 'role-info'],
   description: 'Gets some info about the given role',
@@ -46,5 +65,3 @@ const RoleInfoCommand: Command = {
     message.channel.send(embed)
   },
 }
-
-export default RoleInfoCommand

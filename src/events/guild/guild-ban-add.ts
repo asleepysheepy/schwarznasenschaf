@@ -1,8 +1,14 @@
-import Event from '../event'
 import config from '../../config'
+import { Event } from '../event'
 import { Guild, TextChannel, User } from 'discord.js'
 
-const GuildBanAddEvent: Event = {
+/**
+ * Fired when a user is banned from a guild.
+ *
+ * Used for:
+ *  - Logging a message that the user was banned.
+ */
+export const GuildBanAddEvent: Event = {
   name: 'guildBanAdd',
   handle: (guild: Guild, user: User) => {
     const loggingChannelId = config().loggingChannels.memberships
@@ -10,5 +16,3 @@ const GuildBanAddEvent: Event = {
     channel.send(`${user.tag}, with id \`${user.id}\`, has been banned.`)
   },
 }
-
-export default GuildBanAddEvent

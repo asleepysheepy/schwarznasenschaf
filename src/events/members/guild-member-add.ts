@@ -1,8 +1,15 @@
-import Event from '../event'
 import config from '../../config'
+import { Event } from '../event'
 import { GuildMember, TextChannel } from 'discord.js'
 
-const GuildMemberAddEvent: Event = {
+/**
+ * Fired when a new member joins a guild.
+ *
+ * Used for:
+ *  - Logging a message that the user has joined
+ *  - Posting a welcome message to the new user
+ */
+export const GuildMemberAddEvent: Event = {
   name: 'guildMemberAdd',
   handle: async (member: GuildMember) => {
     let channel = await member.guild.channels.resolve(config().loggingChannels.memberships) as TextChannel
@@ -12,5 +19,3 @@ const GuildMemberAddEvent: Event = {
     channel.send(`Welcome ${member}!\n\nPlease let us know how you identify and we'll get you verified.`)
   },
 }
-
-export default GuildMemberAddEvent

@@ -1,8 +1,12 @@
-import Command from '../command'
 import config from '../../config'
+import { Command } from '../command'
 import { Message } from 'discord.js'
 
-const SudoCommand: Command = {
+/**
+ * A fun command that just prints a message back to the user telling them they
+ * are not able to use sudo.
+ */
+export const SudoCommand: Command = {
   name: 'sudo',
   description: 'Lets any user run any command',
   minArgs: 1,
@@ -13,5 +17,3 @@ const SudoCommand: Command = {
     message.channel.send(`${message.author.tag} is not in the sudoers file. This incident will be reported.`)
   },
 }
-
-export default SudoCommand

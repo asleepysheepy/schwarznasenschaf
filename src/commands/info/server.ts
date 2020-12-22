@@ -1,8 +1,11 @@
-import Command from '../command'
 import config from '../../config'
+import { Command } from '../command'
 import { Message } from 'discord.js'
 
-const ServerInfoCommand: Command = {
+/**
+ * Posts information about the guild
+ */
+export const ServerInfoCommand: Command = {
   name: 'server_info',
   aliases: ['serverinfo', 'server-info', 'guild_info', 'guildinfo', 'guild-info'],
   description: 'Gets some info about the server',
@@ -14,5 +17,3 @@ const ServerInfoCommand: Command = {
     message.channel.send('TODO: fix')
   },
 }
-
-export default ServerInfoCommand

@@ -1,4 +1,10 @@
-export function formatDate(date: Date): string {
+/**
+ * Formates a given date to the following:
+ * 22 December 2018, 21:41:49
+ *
+ * @param date The date to format
+ */
+function formatDate(date: Date): string {
   const options = {
     day: 'numeric',
     year: 'numeric',
@@ -9,4 +15,8 @@ export function formatDate(date: Date): string {
   }
 
   return date.toLocaleDateString('en-GB', options)
+}
+
+export const DateUtils = {
+  formatDate,
 }

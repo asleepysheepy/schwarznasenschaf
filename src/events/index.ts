@@ -1,13 +1,17 @@
-import GuildBanAddEvent from './guild/guild-ban-add'
-import GuildBanRemoveEvent from './guild/guild-ban-remove'
-import GuildMemberAddEvent from './members/guild-member-add'
-import GuildMemberRemoveEvent from './members/guild-member-remove'
-import ReadyEvent from './miscellaneous/ready'
+import { GuildBanAddEvent } from './guild/guild-ban-add'
+import { GuildBanRemoveEvent } from './guild/guild-ban-remove'
+import { GuildMemberAddEvent } from './members/guild-member-add'
+import { GuildMemberRemoveEvent } from './members/guild-member-remove'
+import { ReadyEvent } from './miscellaneous/ready'
 
-export default [
+const eventsList = [
   GuildBanAddEvent,
   GuildBanRemoveEvent,
   GuildMemberAddEvent,
   GuildMemberRemoveEvent,
   ReadyEvent,
 ]
+
+export const Events = {
+  eventsList,
+}

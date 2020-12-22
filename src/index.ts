@@ -1,38 +1,57 @@
 import * as CommandHandler from './commands/command-handler'
-import events from './events'
 import { Client, ClientOptions } from 'discord.js'
+import { Events } from './events'
 import { Logger } from './utils/logger'
 
-const hoursToSeconds = (hours: number): number => hours * 60 * 60
+/**
+ * Registers all the event listeners used by Schaf.
+ *
+ * @param client - The Discord.js client instance
+ */
+function setupEvents(client: Client): void {
+  Events.eventsList.forEach((event) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handle = async (...args: Array<any>) => await event.handle(...args, client)
+    Logger.info(`Registering an handler for ${event.name} events.`)
+    client.on(event.name, handle)
+  })
 
-const clientOptions: ClientOptions = {
-  messageCacheMaxSize: Infinity,
-  messageCacheLifetime: hoursToSeconds(48),
-  messageSweepInterval: hoursToSeconds(1),
-  fetchAllMembers: true,
-  partials: [
-    'USER',
-    'GUILD_MEMBER',
-    'MESSAGE',
-    'REACTION',
-  ],
+  client.on('message', (message) => CommandHandler.handleCommand(message))
 }
 
-const client = new Client(clientOptions)
+/**
+ * The main function that starts Schaf.
+ */
+async function startSchaf(): Promise<void> {
+  Logger.info('Welcome to Ba 🐑!')
 
-// Set up all event listeners in ./events
-events.forEach((event) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handle = async (...args: Array<any>) => {
-    Logger.info(`Handling a '${event.name}' event.`)
-    await event.handle(...args, client)
+  const clientOptions: ClientOptions = {
+    messageCacheMaxSize: Infinity,
+    messageCacheLifetime: 172800, // 48 hours
+    messageSweepInterval: 3600, // 1 hour
+    fetchAllMembers: true,
+    partials: [
+      'USER',
+      'GUILD_MEMBER',
+      'MESSAGE',
+      'REACTION',
+    ],
   }
 
-  Logger.info(`Registering an event handler for ${event.name} events.`)
-  client.on(event.name, handle)
+  const client = new Client(clientOptions)
+  setupEvents(client)
+
+  try {
+    await client.login(process.env['BOT_TOKEN'])
+  } catch (error) {
+    Logger.error('Unable to log in to discord, did you set your bot token?')
+    process.exit()
+  }
+
+  Logger.info('Successfully logged in to Discord.')
+}
+
+startSchaf().catch((error) => {
+  Logger.error(`Unable to start Schaf Bot.\n${error}`)
+  process.exit()
 })
-
-// Set up the event listen for commands
-client.on('message', (message) => CommandHandler.handleCommand(message))
-
-client.login(process.env['DISCORD_TOKEN'])

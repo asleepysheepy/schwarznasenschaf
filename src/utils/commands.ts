@@ -1,9 +1,15 @@
 import { TextChannel } from 'discord.js'
 
-export async function bulkDeleteMessages(channel: TextChannel, messagesToDelete: number): Promise<boolean> {
+/**
+ * Bulk deletes messages from a channel.
+ *
+ * @param channel the channel to delete messages from
+ * @param messagesToDelete the number of messages to delete
+ */
+async function bulkDeleteMessages(channel: TextChannel, messagesToDelete: number): Promise<boolean> {
   const failedMessage = 'Unable to delete messages'
   if (messagesToDelete < 1 || messagesToDelete > 99) {
-    channel.send(`${failedMessage} 1`)
+    channel.send(`${failedMessage}`)
     return false
   }
 
@@ -12,16 +18,28 @@ export async function bulkDeleteMessages(channel: TextChannel, messagesToDelete:
       if (deletedMessages.size > 0) {
         return true
       } else {
-        channel.send(`${failedMessage} 2`)
+        channel.send(`${failedMessage}`)
         return false
       }
     })
     .catch(() => {
-      channel.send(`${failedMessage} 3`)
+      channel.send(`${failedMessage}`)
       return false
     })
 }
 
-export function sendAndDeleteMessage(messageText: string, channel: TextChannel, delay: number): void {
+/**
+ * Sends a message to a given channel, then deletes that message again after a given timeout.
+ *
+ * @param messageText The text of the message to be sent
+ * @param channel The channel to send the message to
+ * @param delay The delay, in seconds, before the message is deleted
+ */
+function sendAndDeleteMessage(messageText: string, channel: TextChannel, delay: number): void {
   channel.send(messageText).then((message) => message.delete({ timeout: delay * 1000 }))
+}
+
+export const CommandUtils = {
+  bulkDeleteMessages,
+  sendAndDeleteMessage,
 }

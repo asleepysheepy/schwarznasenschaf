@@ -1,9 +1,12 @@
-import Command from '../command'
 import config from '../../config'
+import { Command } from '../command'
+import { CommandUtils } from '../../utils/commands'
 import { Message, TextChannel } from 'discord.js'
-import { bulkDeleteMessages, sendAndDeleteMessage } from '../../utils/commands'
 
-const ClearCommand: Command = {
+/**
+ * Util command to bluk clear a number of messages form the channel
+ */
+export const ClearCommand: Command = {
   name: 'clear',
   description: 'Clears the last [x] messages from the channel',
   maxArgs: 1,
@@ -21,11 +24,9 @@ const ClearCommand: Command = {
       }
 
       const channel = message.channel as TextChannel
-      if (bulkDeleteMessages(channel, numberMessagesToDelete)) {
-        sendAndDeleteMessage(`Successfully deleted ${numberMessagesToDelete} messages`, channel, 5)
+      if (CommandUtils.bulkDeleteMessages(channel, numberMessagesToDelete)) {
+        CommandUtils.sendAndDeleteMessage(`Successfully deleted ${numberMessagesToDelete} messages`, channel, 5)
       }
     }
   },
 }
-
-export default ClearCommand

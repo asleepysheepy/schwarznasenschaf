@@ -1,21 +1,33 @@
-import Command from '../command'
-import commands from '../../commands'
 import config from '../../config'
+import { Command } from '../command'
+import { Commands } from '../../commands'
 import { Message } from 'discord.js'
 
+/**
+ * Prints a list of all Schaf's commands.
+ *
+ * @param message The message used to run the command
+ */
 const commandList = (message: Message) => {
   const messagesToSend = []
 
   messagesToSend.push('Schwarznasenschaf commands:')
-  messagesToSend.push(commands.map((command) => `\`${command.name}\``).join(', '))
-  messagesToSend.push(`\nYou can send \`${config().prefix}help [command name]\` to get info on a specific command!`)
+  messagesToSend.push(Commands.commandsList.map((command) => `\`${command.name}\``).join(', '))
+  messagesToSend.push(`\nYou can send \`${Commands.COMMAND_PREFIX}help [command name]\` to get info on a specific command!`)
 
   message.channel.send(messagesToSend, { split: true })
 }
 
+/**
+ * Prints the help message for a single Schaf command
+ *
+ * @param message The message used to run the command
+ * @param args The arguments passed to the command, should contain
+ *   the command to print the help message for
+ */
 const singleCommand = (message: Message, args: Array<string>) => {
   const [commandName] = args
-  const command = commands.find((c) => {
+  const command = Commands.commandsList.find((c) => {
     if (c.name === commandName) { return true }
     return c.aliases?.includes(commandName)
   })
@@ -33,7 +45,10 @@ const singleCommand = (message: Message, args: Array<string>) => {
   message.channel.send(messagesToSend)
 }
 
-const HelpCommand: Command = {
+/**
+ * Prints help messages for explaining how to use different Schaf commands
+ */
+export const HelpCommand: Command = {
   name: 'help',
   aliases: ['commands'],
   description: 'List all of commands or info about a specific command.',
@@ -49,5 +64,3 @@ const HelpCommand: Command = {
     }
   },
 }
-
-export default HelpCommand

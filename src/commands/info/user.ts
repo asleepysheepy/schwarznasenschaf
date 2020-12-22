@@ -1,18 +1,35 @@
-import Command from '../command'
 import config from '../../config'
-import createEmbed from '../../utils/embeds'
+import { Command } from '../command'
+import { DateUtils } from '../../utils/date'
+import { EmbedUtils } from '../../utils/embeds'
 import { GuildMember, Message } from 'discord.js'
-import { formatDate } from '../../utils/date'
 
+/**
+ * Gets the user to retrive info for.
+ *
+ * Attempts to resolve the user as follows:
+ * 1) Check for a mentioned user
+ * 2) Attempts a Snowflake from the command arguments
+ * 3) Uses the message's author
+ *
+ * @param message The message with the command
+ * @param args The arguments to the command, may contain the user.
+ */
 const getMember = async (message: Message, args: Array<string>) => {
   if (message.mentions.members?.first()) { return message.mentions.members.first() }
 
   return args[0] ? await message.guild?.members?.resolve(args[0]) : message.member
 }
 
+/**
+ * Builds the embed containing all the info to post about the user.
+ *
+ * @param message The message which ran the command
+ * @param member The user to post info about
+ */
 const buildDetails = async (message: Message, member: GuildMember) => {
   const user = member.user
-  const embed = await createEmbed(message)
+  const embed = await EmbedUtils.createEmbed(message.author, message.client)
   embed.setTitle('User Info')
     .addField('Name', user.tag, true)
     .addField('ID', member.id, true)
@@ -25,15 +42,18 @@ const buildDetails = async (message: Message, member: GuildMember) => {
   if (avatarURL) { embed.setThumbnail(avatarURL) }
 
   const joinDate = member.joinedAt
-  if (joinDate) { embed.addField('Joined At', formatDate(joinDate), true) }
+  if (joinDate) { embed.addField('Joined At', DateUtils.formatDate(joinDate), true) }
 
-  embed.addField('Created At', formatDate(user.createdAt), true)
+  embed.addField('Created At', DateUtils.formatDate(user.createdAt), true)
     .addField('Roles', member.roles.cache.map((role) => `${role}`).join(', '))
 
   return embed
 }
 
-const UserInfoCommand: Command = {
+/**
+ * Sends a message containing some information about the given user.
+ */
+export const UserInfoCommand: Command = {
   name: 'user_info',
   aliases: ['userinfo', 'user-info'],
   description: 'Gets some info about the given user, uses the command issuer if no user was given.',
@@ -49,5 +69,3 @@ const UserInfoCommand: Command = {
     message.channel.send(embed)
   },
 }
-
-export default UserInfoCommand
