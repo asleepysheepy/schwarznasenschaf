@@ -2,7 +2,6 @@ interface Config {
   channels: {
     bots: string,
     general: string,
-    rules: string,
     welcome: string,
   },
   loggingChannels: {
@@ -22,7 +21,6 @@ export const configProd = {
   channels: {
     bots: '299439031320838145',
     general: '309382568896233476',
-    rules: '300991962876608512',
     welcome: '352215874771615754',
   },
   loggingChannels: {
@@ -42,7 +40,6 @@ export const configDev = {
   channels: {
     bots: '643220214095413249',
     general: '643220200057077761',
-    rules: '643220269959348249',
     welcome: '643220227118596144',
   },
   loggingChannels: {

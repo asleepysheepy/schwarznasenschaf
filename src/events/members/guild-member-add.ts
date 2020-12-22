@@ -9,7 +9,7 @@ const GuildMemberAddEvent: Event = {
     channel.send(`${member.user.tag}, with id \`${member.user.id}\`, has joined the server.`)
 
     channel = await member.guild.channels.resolve(config().channels.welcome) as TextChannel
-    channel.send(`Welcome ${member}!\n\nPlease confirm you've read the <#${config().channels.rules}> and tell us how you identify.`)
+    channel.send(`Welcome ${member}!\n\nPlease let us know how you identify and we'll get you verified.`)
   },
 }
 
